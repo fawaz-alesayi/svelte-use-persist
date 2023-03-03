@@ -1,58 +1,60 @@
-# create-svelte
+# svelte-use-persist
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A Svelte action that can persist any form or input value to local storage (or your own store)
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+## Installation
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+npm install svelte-use-persist
 ```
 
-## Developing
+## Features
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- Persist any form (or any parent elements that contain inputs) or inputs local storage
+- Supports all input types: `text`, `textarea`, `date`, `email`, `tel`, `number`, `checkbox`, `radio`, `select`, `file`, `range`, `color`, `time`, `week`
 
-```bash
-npm run dev
+## Usage
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+#### Forms
+
+Create a form and add the `use:persist` action to it. The action takes an object with a `key` property. This key is used to store the form values in local storage.
+
+```svelte
+<form
+	use:persist={{
+		key: 'my-form'
+	}}
+>
+	<label for="title">Title</label>
+	<input type="text" name="title" />
+
+	<label for="content">Content</label>
+	<textarea name="content" />
+
+	<label for="date">Date</label>
+	<input type="date" name="date" />
+
+	<label for="phone">Phone</label>
+	<input type="tel" name="phone" />
+
+	<label for="email">Email</label>
+	<input type="email" name="email" />
+
+	<button type="submit">Save</button>
+</form>
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+### Inputs
 
-## Building
+```svelte
+<script>
+    import { persist } from 'svelte-use-persist';
+</script>
 
-To build your library:
-
-```bash
-npm run package
-```
-
-To create a production version of your showcase app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
+<input
+    type="text"
+    use:persist={{
+        key: 'my-input'
+    }}
+/>
 ```

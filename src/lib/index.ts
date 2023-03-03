@@ -10,18 +10,31 @@ export function persist(node: HTMLElement, {
     store?: Writable<any>,
 
     /**
-     * the key to use for the local storage
+     * the key to use for the local storage. if not provided, the id attribute of the element will be used.
+     * 
+     * @default node.id
      *  */
-    key?: string,
+    key: string,
 
     /**
      * the event to listen to for persisting the form state
      * 
      * @default 'input'
      * */
-    persistOn: 'input' | 'change'
+    persistOn: 'input' | 'change',
+
+    /**
+     * whether to save the values of an input of type password. i.e. `<input type="password" />`
+     * 
+     * This is a massive security risk, only use this if you know what you are doing.
+    *
+    * @default false
+    * */
+    savePassword?: boolean
 } = {
-        persistOn: 'input'
+        persistOn: 'input',
+        key: node.id,
+        savePassword: false
     }) {
     const _key = key || node.id
     const _store = store || persisted(_key, {})
@@ -38,7 +51,6 @@ export function persist(node: HTMLElement, {
         destroy() {
             node.removeEventListener('input', handler);
         },
-        update() { }
     }
 }
 
