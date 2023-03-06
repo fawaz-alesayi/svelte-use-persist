@@ -29,7 +29,7 @@ type PersistConfigWithStore = BasePersistConfig & {
 }
 type PersistConfig = PersistConfigWithKey | PersistConfigWithStore
 
-export function persist(node: HTMLElement, config: PersistConfig) {
+export function persist(element: HTMLElement, config: PersistConfig) {
     const _config = {
         persistOn: 'input',
         ignorePassword: true,
@@ -49,15 +49,15 @@ export function persist(node: HTMLElement, config: PersistConfig) {
         })
     }
 
-    load_cached_values(node, _store, {
+    load_cached_values(element, _store, {
         ignorePassword: _config.ignorePassword
     })
 
-    node.addEventListener(_config.persistOn, handler);
+    element.addEventListener(_config.persistOn, handler);
 
     return {
         destroy() {
-            node.removeEventListener(_config.persistOn, handler);
+            element.removeEventListener(_config.persistOn, handler);
         },
     }
 }
@@ -77,24 +77,35 @@ function save_input(event: Event, store: Writable<any>, config: {
     }
 }
 
-const load_cached_values = (node: HTMLElement, store: Writable<any>, config: {
+const load_cached_values = (element: HTMLElement, store: Writable<any>, config: {
     ignorePassword: boolean
 }) => {
     for (const [key, value] of Object.entries(get(store))) {
-        const inputs = node.querySelectorAll(`[name="${key}"]`)
-        for (const input of inputs) {
-            if (input instanceof HTMLInputElement) {
-                console.log(input, "is a HTMLInputElement")
-                if (input.type === 'radio') {
-                    input.checked = input.value === value
-                } else if (input.type === 'password' && !config.ignorePassword) {
-                    input.value = value as string
-                }
-            } else if (input instanceof HTMLTextAreaElement) {
-                input.value = value as string
-            } else if (input instanceof HTMLSelectElement) {
-                input.selectedIndex = value as number
-            }
+        if (element.attributes.getNamedItem('name')?.value === key) {
+            load_data(element, value, config)
         }
+        const inputs = element.querySelectorAll(`[name="${key}"]`)
+        for (const input of inputs) {
+            load_data(input, value, config);
+        }
+    }
+}
+
+function load_data(element: Element, value: unknown, config: { ignorePassword: boolean; }) {
+    if (element instanceof HTMLInputElement) {
+        if (element.type === 'radio') {
+            element.checked = element.value === value;
+        }
+        else if (element.type === 'checkbox') {
+            element.checked = value as boolean;
+        } else if (element.type === 'password' && !config.ignorePassword) {
+            element.value = value as string;
+        } else {
+            element.value = value as string;
+        }
+    } else if (element instanceof HTMLTextAreaElement) {
+        element.value = value as string;
+    } else if (element instanceof HTMLSelectElement) {
+        element.selectedIndex = value as number;
     }
 }

@@ -10,14 +10,29 @@ npm install svelte-use-persist
 
 ## Features
 
-- Persist any form (or any parent elements that contain inputs) or inputs local storage
-- Supports all input types: `text`, `textarea`, `date`, `email`, `tel`, `number`, `checkbox`, `radio`, `select`, `file`, `range`, `color`, `time`, `week`
+- Persist any form or inputs to local storage (or your own stores) and restore them on page load automatically
+- Currently supports and end-to-end tested with:
+  - `<form>` or any element that contains inputs
+  - `<input type="text">`
+  - `<input type="email">`
+  - `<input type="tel">`
+  - `<input type="date">`
+  - `<input type="number">`
+  - `<input type="checkbox">`
+  - `<input type="radio">`
+  - `<input type="password">` (off by default, only use if you know what you're doing)
+  - `<textarea>`
+  - `<select>`
 
 ## Usage
 
 #### Forms
 
-Create a form and add the `use:persist` action to it. The action takes an object with a `key` property. This key is used to store the form values in local storage.
+Create a form and add the `use:persist` action to it. The action takes an object with a `key` property. This key is the identifier for the form in local storage.
+
+##### Note
+
+Make sure all inputs in the form have the `name` attribute. This is used to identify the input in local storage.
 
 ```svelte
 <form
@@ -46,15 +61,39 @@ Create a form and add the `use:persist` action to it. The action takes an object
 
 ### Inputs
 
+Create an input and add the `use:persist` action to it. The action takes an object with a `key` property. This key is the identifier for the input in local storage.
+
+- Make sure your input has a `name` attribute
+
 ```svelte
 <script>
-    import { persist } from 'svelte-use-persist';
+	import { persist } from 'svelte-use-persist';
 </script>
 
 <input
-    type="text"
-    use:persist={{
-        key: 'my-input'
-    }}
+	type="text"
+	use:persist={{
+		key: 'my-input'
+	}}
+/>
+```
+
+### Use with your own store
+
+You can use this action with your own stores. Just pass the store as the `store` property in the action object and make sure you don't specify the `key` property. If you use your own store, the action will **not** save anything to local storage. It will only save the form or input value to your store.
+
+```svelte
+<script>
+	import { persist } from 'svelte-use-persist';
+	import { writable } from 'svelte/store';
+
+	const store = writable({});
+</script>
+
+<input
+	type="text"
+	use:persist={{
+		store
+	}}
 />
 ```

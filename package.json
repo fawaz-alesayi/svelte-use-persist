@@ -1,6 +1,6 @@
 {
 	"name": "svelte-use-presist",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && pnpm package",
@@ -50,7 +50,6 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"devalue": "^4.3.0",
 		"svelte-local-storage-store": "^0.4.0"
 	}
 }
