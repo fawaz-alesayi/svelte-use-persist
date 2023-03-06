@@ -2,7 +2,19 @@
 	import { persist } from '$lib';
 </script>
 
+<main class="prose lg:prose-xl mb-4">
+	<h1>svelte-use-persist demo</h1>
+
+	<p>
+		svelte-use-persist is a Svelte action that persists form values or individual inputs to
+		localStorage.
+	</p>
+
+	<p>Fill out any of the fields below and refresh the page. Their values will be restored!</p>
+</main>
+
 <form
+	class="flex flex-col items-start max-w-4xl border-4 border-black p-4 gap-4"
 	id="my-form"
 	data-testid="my-form"
 	use:persist={{
@@ -41,17 +53,32 @@
 
 	<label for="radio">Radio</label>
 	<input type="radio" name="radio" data-testid="radio" value="on" />
+
+	<label for="select">Select</label>
+	<select name="select" data-testid="select">
+		<option value="1">One</option>
+		<option value="2">Two</option>
+		<option value="3">Three</option>
+	</select>
+
+	<label for="select-multiple">Select multiple</label>
+	<select name="select-multiple" data-testid="select-multiple" multiple>
+		<option value="1">One</option>
+		<option value="2">Two</option>
+		<option value="3">Three</option>
+	</select>
+
+	<!-- <button type="reset" data-testid="reset"> Reset </button> -->
 </form>
 
-<input use:persist={{
-	key: 'discrete',
-}} type="text" name="discrete" data-testid="discrete" />
-
-<style>
-	form {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		row-gap: 1rem;
-	}
-</style>
+<section id="discrete">
+	<label for="discrete">Discrete input (outside form)</label>
+	<input
+		use:persist={{
+			key: 'discrete'
+		}}
+		type="text"
+		name="discrete"
+		data-testid="discrete"
+	/>
+</section>
