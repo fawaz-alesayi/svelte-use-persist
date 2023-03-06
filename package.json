@@ -3,6 +3,10 @@
 	"version": "0.1.0",
 	"description": "A Svelte action that can persist any form or input value to local storage (or your own store)",
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fawaz-alesayi/svelte-use-presist"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && pnpm package",
