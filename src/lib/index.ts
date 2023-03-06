@@ -8,7 +8,7 @@ type BasePersistConfig = {
      * 
      * @default 'input'
      * */
-    persistOn: 'input' | 'change',
+    persistOn?: 'input' | 'change',
 
     /**
      * Setting this to `false` will cause the password fields to be persisted. Highly discouraged.
@@ -17,41 +17,47 @@ type BasePersistConfig = {
     *
     * @default true
     * */
-    ignorePassword: boolean
-
-    key?: string
-    store?: Writable<any>
+    ignorePassword?: boolean
 }
 
 type PersistConfigWithKey = BasePersistConfig & {
-    type: 'key',
     key: string
 }
 
 type PersistConfigWithStore = BasePersistConfig & {
-    type: 'store',
     store: Writable<any>
 }
 type PersistConfig = PersistConfigWithKey | PersistConfigWithStore
 
 export function persist(node: HTMLElement, config: PersistConfig) {
-    const _store = config.type === 'key' ? persisted(config.key, {}) : config.store
+    const _config = {
+        persistOn: 'input',
+        ignorePassword: true,
+        ...config
+    }
+
+    let _store: Writable<any>
+    if ('key' in _config) {
+        _store = persisted(_config.key, {})
+    } else {
+        _store = _config.store
+    }
 
     function handler(event: Event) {
         save_input(event, _store, {
-            ignorePassword: config.ignorePassword
+            ignorePassword: _config.ignorePassword
         })
     }
 
     load_cached_values(node, _store, {
-        ignorePassword: config.ignorePassword
+        ignorePassword: _config.ignorePassword
     })
 
-    node.addEventListener(config.persistOn, handler);
+    node.addEventListener(_config.persistOn, handler);
 
     return {
         destroy() {
-            node.removeEventListener(config.persistOn, handler);
+            node.removeEventListener(_config.persistOn, handler);
         },
     }
 }
