@@ -97,3 +97,7 @@ You can use this action with your own stores. Just pass the store as the `store`
 	}}
 />
 ```
+
+# License
+
+MIT
