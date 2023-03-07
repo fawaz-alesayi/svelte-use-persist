@@ -2,6 +2,10 @@
 
 A Svelte action that saves forms and inputs client side to local storage and restores them on page load.
 
+## Demo
+
+[Try it out here!](svelte-use-presist.vercel.app)
+
 ## Installation
 
 ```bash
@@ -105,6 +109,7 @@ I run a compliance & legal startup where people have to fill out very long forms
 ## Acknowledgements
 
 This work would have not been possible without the following projects and people, so thank you!
+
 - [svelte-local-storage-store](https://github.com/joshnuss/svelte-local-storage-store) by @joshnuss (Joshua Nussbaum)
 - [Svelte](https://github.com/sveltejs/svelte) and the [Svelte contributors](https://github.com/sveltejs/svelte/graphs/contributors)
 

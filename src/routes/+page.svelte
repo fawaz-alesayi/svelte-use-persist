@@ -1,5 +1,8 @@
 <script>
 	import { persist } from '$lib';
+
+	const input_styles = 'border-2 border-black';
+	const label_styles = 'font-black';
 </script>
 
 <main class="prose lg:prose-xl mb-4">
@@ -15,54 +18,54 @@
 </main>
 
 <form
-	class="flex flex-col items-start max-w-4xl border-4 border-black p-4 gap-4"
+	class="flex flex-col items-start max-w-4xl border-4 border-black p-4 gap-4 mb-8"
 	id="my-form"
 	data-testid="my-form"
 	use:persist={{
 		key: 'form-test'
 	}}
 >
-	<label for="title">Title</label>
-	<input type="text" name="title" data-testid="title" />
+	<label for="title" class={label_styles}>Title</label>
+	<input type="text" name="title" data-testid="title" class={input_styles} />
 
-	<label for="content">Content</label>
-	<textarea name="content" data-testid="content" />
+	<label for="content" class={label_styles}>Content</label>
+	<textarea name="content" data-testid="content" class={input_styles} />
 
-	<label for="date">Date</label>
-	<input type="date" name="date" data-testid="date" />
+	<label for="date" class={label_styles}>Date</label>
+	<input type="date" name="date" data-testid="date" class={input_styles} />
 
-	<label for="phone">Phone</label>
-	<input type="tel" name="phone" data-testid="phone" />
+	<label for="phone" class={label_styles}>Phone</label>
+	<input type="tel" name="phone" data-testid="phone" class={input_styles} />
 
-	<label for="email">Email</label>
-	<input type="email" name="email" data-testid="email" />
+	<label for="email" class={label_styles}>Email</label>
+	<input type="email" name="email" data-testid="email" class={input_styles} />
 
-	<label for="url">URL</label>
-	<input type="url" name="url" data-testid="url" />
+	<label for="url" class={label_styles}>URL</label>
+	<input type="url" name="url" data-testid="url" class={input_styles} />
 
-	<label for="number">Number</label>
-	<input type="number" name="number" data-testid="number" />
+	<label for="number" class={label_styles}>Number</label>
+	<input type="number" name="number" data-testid="number" class={input_styles} />
 
-	<label for="range">Range</label>
-	<input type="range" name="range" data-testid="range" />
+	<label for="range" class={label_styles}>Range</label>
+	<input type="range" name="range" data-testid="range" class={input_styles} />
 
-	<label for="color">Color</label>
-	<input type="color" name="color" data-testid="color" />
+	<label for="color" class={label_styles}>Color</label>
+	<input type="color" name="color" data-testid="color" class={input_styles} />
 
-	<label for="checkbox">Checkbox</label>
-	<input type="checkbox" name="checkbox" data-testid="checkbox" value="on" />
+	<label for="checkbox" class={label_styles}>Checkbox</label>
+	<input type="checkbox" name="checkbox" data-testid="checkbox" value="on" class={input_styles} />
 
-	<label for="radio">Radio</label>
-	<input type="radio" name="radio" data-testid="radio" value="on" />
+	<label for="radio" class={label_styles}>Radio</label>
+	<input type="radio" name="radio" data-testid="radio" value="on" class={input_styles} />
 
-	<label for="select">Select</label>
-	<select name="select" data-testid="select">
+	<label for="select" class={label_styles}>Select</label>
+	<select name="select" data-testid="select" class={input_styles}>
 		<option value="1">One</option>
 		<option value="2">Two</option>
 		<option value="3">Three</option>
 	</select>
 
-	<label for="password">Password</label>
+	<label for="password" class={label_styles}>Password</label>
 	<small>Passwords are not persisted by default</small>
 	<input type="password" name="password" data-testid="password" />
 
@@ -102,7 +105,7 @@
 </form>
 
 <section id="discrete">
-	<label for="discrete">Discrete input (outside form)</label>
+	<label for="discrete" class={label_styles}>Discrete input (outside form)</label>
 	<input
 		use:persist={{
 			key: 'discrete'
@@ -110,5 +113,6 @@
 		type="text"
 		name="discrete"
 		data-testid="discrete"
+		class={input_styles}
 	/>
 </section>
