@@ -70,9 +70,21 @@
 
 	<!-- <button type="reset" data-testid="reset"> Reset </button> -->
 
-	<button type="submit" data-testid="submit"> Submit </button>
+	<button
+		type="submit"
+		data-testid="submit"
+		class="btn variant-filled-primary font-black border-black border-2"
+	>
+		Submit
+	</button>
 
-	<button type="reset" data-testid="reset"> Reset </button>
+	<button
+		type="reset"
+		data-testid="reset"
+		class="btn variant-filled-primary font-black border-black border-2"
+	>
+		Reset
+	</button>
 </form>
 
 <section id="discrete">

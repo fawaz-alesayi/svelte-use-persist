@@ -11,6 +11,7 @@ module.exports = {
         extend: {},
     },
     plugins: [
+        require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         // 3. Append the Skeleton plugin to the end of this list
         ...require('@skeletonlabs/skeleton/tailwind/skeleton.cjs')()
