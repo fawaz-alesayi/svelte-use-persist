@@ -72,6 +72,15 @@
 	<!-- <button type="reset" data-testid="reset"> Reset </button> -->
 
 	<button
+		type="button"
+		data-testid="clear"
+		class="btn variant-filled-primary font-black border-black border-2"
+		on:click={() => window.location.reload()}
+	>
+		Refresh Page
+	</button>
+
+	<button
 		type="submit"
 		data-testid="submit"
 		class="btn variant-filled-primary font-black border-black border-2"
@@ -84,7 +93,7 @@
 		data-testid="reset"
 		class="btn variant-filled-primary font-black border-black border-2"
 	>
-		Reset
+		Reset Form
 	</button>
 </form>
 
