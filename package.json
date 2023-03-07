@@ -1,6 +1,6 @@
 {
 	"name": "svelte-use-persist",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "A Svelte action that can persist any form or input value to local storage (or your own store)",
 	"license": "MIT",
 	"repository": {

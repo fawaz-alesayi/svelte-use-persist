@@ -6,8 +6,8 @@
 	<h1>svelte-use-persist demo</h1>
 
 	<p>
-		svelte-use-persist is a Svelte action that persists form values or individual inputs to
-		localStorage.
+		svelte-use-persist is a Svelte action that persists form values or individual inputs' values to
+		localStorage and loads them back when the form or input is loaded again.
 	</p>
 
 	<p>Fill out any of the fields below and refresh the page. Their values will be restored!</p>
@@ -61,14 +61,18 @@
 		<option value="3">Three</option>
 	</select>
 
-	<label for="select-multiple">Select multiple</label>
+	<!-- <label for="select-multiple">Select multiple</label>
 	<select name="select-multiple" data-testid="select-multiple" multiple>
 		<option value="1">One</option>
 		<option value="2">Two</option>
 		<option value="3">Three</option>
-	</select>
+	</select> -->
 
 	<!-- <button type="reset" data-testid="reset"> Reset </button> -->
+
+	<button type="submit" data-testid="submit"> Submit </button>
+
+	<button type="reset" data-testid="reset"> Reset </button>
 </form>
 
 <section id="discrete">

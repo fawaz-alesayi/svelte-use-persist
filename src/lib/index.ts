@@ -17,7 +17,15 @@ type BasePersistConfig = {
     *
     * @default true
     * */
-    ignorePassword?: boolean
+    ignorePassword?: boolean,
+
+
+    /**
+     * Clear local storage that is associated with the element when the form is submitted.
+     * 
+     * @default true
+     * */
+    clearOnSubmit?: boolean
 }
 
 type PersistConfigWithKey = BasePersistConfig & {
@@ -33,6 +41,7 @@ export function persist(element: HTMLElement, config: PersistConfig) {
     const _config = {
         persistOn: 'input',
         ignorePassword: true,
+        clearOnSubmit: true,
         ...config
     }
 
@@ -49,15 +58,25 @@ export function persist(element: HTMLElement, config: PersistConfig) {
         })
     }
 
+    function clearLocalStorage(_: Event) {
+        if (_config.clearOnSubmit) {
+            _store.set({})
+        }
+    }
+
     load_cached_values(element, _store, {
         ignorePassword: _config.ignorePassword
     })
 
     element.addEventListener(_config.persistOn, handler);
+    element.addEventListener('submit', clearLocalStorage);
+    element.addEventListener('reset', clearLocalStorage);
 
     return {
         destroy() {
             element.removeEventListener(_config.persistOn, handler);
+            element.removeEventListener('submit', clearLocalStorage);
+            element.removeEventListener('reset', clearLocalStorage);
         },
     }
 }

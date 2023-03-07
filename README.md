@@ -1,6 +1,6 @@
 # svelte-use-persist
 
-A Svelte action that can persist any form or input value to local storage (or your own store)
+A Svelte action that saves forms client sid 
 
 ## Installation
 
@@ -22,7 +22,7 @@ npm install svelte-use-persist
   - `<input type="radio">`
   - `<input type="password">` (off by default, only use if you know what you're doing)
   - `<textarea>`
-  - `<select>`
+  - `<select>` (multiple not supported for now)
 
 ## Usage
 
@@ -97,6 +97,10 @@ You can use this action with your own stores. Just pass the store as the `store`
 	}}
 />
 ```
+
+## Why did you create this?
+
+I run a compliance & legal startup where people have to fill out very long forms (70+ questions). I thought that It would be a really bad experience if one of our customers had to re-do the form. So svelte-use-persist was born!
 
 # License
 
