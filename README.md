@@ -102,6 +102,12 @@ You can use this action with your own stores. Just pass the store as the `store`
 
 I run a compliance & legal startup where people have to fill out very long forms (70+ questions). I thought that It would be a really bad experience if one of our customers had to re-do the form. So svelte-use-persist was born!
 
+## Acknowledgements
+
+This work would have not been possible without the following projects and people, so thank you!
+- [svelte-local-storage-store](https://github.com/joshnuss/svelte-local-storage-store) by @joshnuss (Joshua Nussbaum)
+- [Svelte](https://github.com/sveltejs/svelte) and the [Svelte contributors](https://github.com/sveltejs/svelte/graphs/contributors)
+
 # License
 
 MIT
