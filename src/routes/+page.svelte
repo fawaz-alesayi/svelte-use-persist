@@ -62,6 +62,10 @@
 		<option value="3">Three</option>
 	</select>
 
+	<label for="password">Password</label>
+	<small>Passwords are not persisted by default</small>
+	<input type="password" name="password" data-testid="password" />
+
 	<!-- <label for="select-multiple">Select multiple</label>
 	<select name="select-multiple" data-testid="select-multiple" multiple>
 		<option value="1">One</option>

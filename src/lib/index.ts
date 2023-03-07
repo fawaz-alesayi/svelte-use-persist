@@ -30,6 +30,13 @@ type BasePersistConfig = {
 
 type PersistConfigWithKey = BasePersistConfig & {
     key: string
+
+    /**
+     * The storage to use for persisting the form state. (local, session)
+     * 
+     * @default 'local'
+     */
+    storage?: 'local' | 'session'
 }
 
 type PersistConfigWithStore = BasePersistConfig & {
@@ -42,12 +49,15 @@ export function persist(element: HTMLElement, config: PersistConfig) {
         persistOn: 'input',
         ignorePassword: true,
         clearOnSubmit: true,
+        storage: 'local',
         ...config
-    }
+    } as const
 
     let _store: Writable<any>
     if ('key' in _config) {
-        _store = persisted(_config.key, {})
+        _store = persisted(_config.key, {}, {
+            storage: _config.storage
+        })
     } else {
         _store = _config.store
     }

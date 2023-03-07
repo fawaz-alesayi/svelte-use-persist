@@ -13,6 +13,7 @@ test('the form in the root route "/" should be saved in localSorage and persiste
 		color: '#ff0000',
 		checkbox: 'on',
 		radio: 'on',
+		password: 'password',
 	} as const;
 
 	await page.goto('/');
@@ -30,6 +31,7 @@ test('the form in the root route "/" should be saved in localSorage and persiste
 	await page.getByTestId('color').fill(form.color);
 	await page.getByTestId('checkbox').check();
 	await page.getByTestId('radio').check();
+	await page.getByTestId('password').fill(form.password);
 
 	const _localStorage: Record<string, any> = await page.evaluate(() => {
 		return localStorage
@@ -39,7 +41,12 @@ test('the form in the root route "/" should be saved in localSorage and persiste
 
 	const saved_form = JSON.parse(_localStorage['form-test']);
 
-	expect(saved_form).toEqual(form);
+	expect(saved_form['password']).toBeUndefined();
+
+	expect(saved_form).toEqual({
+		...form,
+		password: undefined,
+	});
 
 	await page.reload();
 
@@ -54,6 +61,7 @@ test('the form in the root route "/" should be saved in localSorage and persiste
 	await expect(await page.getByTestId('color').inputValue()).toStrictEqual(form.color);
 	await expect(await page.getByTestId('checkbox').isChecked()).toEqual(true);
 	await expect(await page.getByTestId('radio').isChecked()).toEqual(true);
+	await expect(await page.getByTestId('password').inputValue()).toEqual("");
 
-	
+
 });
