@@ -4,7 +4,7 @@ A Svelte action that saves forms and inputs client side to local storage and res
 
 ## Demo
 
-[Try it out here!](svelte-use-presist.vercel.app)
+[Try it out here!](https://svelte-use-presist.vercel.app)
 
 ## Installation
 
