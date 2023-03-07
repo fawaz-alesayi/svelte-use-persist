@@ -105,13 +105,21 @@
 </form>
 
 <section id="discrete">
-	<label for="discrete" class={label_styles}>Discrete input (outside form)</label>
+	<div class="prose lg:prose-xl mb-4">
+		<h2>Saving inputs outside of a form</h2>
+
+		<p>
+			This action also works for inputs that are not part of a form. Just make sure to give them a name
+		</p>
+	</div>
+
+	<label for="discrete" class={label_styles}>Standalone input (outside form)</label>
 	<input
 		use:persist={{
-			key: 'discrete'
+			key: 'standalone'
 		}}
 		type="text"
-		name="discrete"
+		name="standalone"
 		data-testid="discrete"
 		class={input_styles}
 	/>
