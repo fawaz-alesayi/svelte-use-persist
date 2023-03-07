@@ -6,8 +6,9 @@
 	<h1>svelte-use-persist demo</h1>
 
 	<p>
-		svelte-use-persist is a Svelte action that persists form values or individual inputs' values to
-		localStorage and loads them back when the form or input is loaded again.
+		<a href="https://github.com/fawaz-alesayi/svelte-use-presist">svelte-use-persist</a> is a Svelte
+		action that persists form values or individual inputs' values to localStorage and loads them back
+		when the form or input is loaded again.
 	</p>
 
 	<p>Fill out any of the fields below and refresh the page. Their values will be restored!</p>
