@@ -1,6 +1,6 @@
 # svelte-use-persist
 
-A Svelte action that saves forms client sid 
+A Svelte action that saves forms and inputs client side to local storage and restores them on page load.
 
 ## Installation
 
