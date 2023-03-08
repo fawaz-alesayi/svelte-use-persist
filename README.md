@@ -1,3 +1,6 @@
+![svelte-use-persist](https://user-images.githubusercontent.com/28185591/223736054-3dfdb061-5e14-4878-a7ff-3b9ab1f99a6c.png)
+
+
 # svelte-use-persist
 
 A Svelte action that saves forms and inputs client side to local storage and restores them on page load.
