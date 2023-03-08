@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { persist } from '$lib';
 
-	const input_styles = 'border-2 border-black';
+	const input_styles = 'border-1 border-black rounded-xl';
 	const label_styles = 'font-black';
 
 	let title: string;
@@ -26,7 +26,7 @@
 </main>
 
 <form
-	class="flex flex-col items-start max-w-4xl border-4 border-black p-4 gap-4 mb-8"
+	class="flex flex-col items-start max-w-4xl border-2 border-black p-4 gap-4 mb-8 rounded-lg"
 	id="my-form"
 	data-testid="my-form"
 	use:persist={{
@@ -103,7 +103,7 @@
 
 	<label for="password" class={label_styles}>Password</label>
 	<small>Passwords are not persisted by default</small>
-	<input type="password" name="password" data-testid="password" />
+	<input type="password" name="password" data-testid="password" class={input_styles} />
 
 	<!-- <label for="select-multiple">Select multiple</label>
 	<select name="select-multiple" data-testid="select-multiple" multiple>
@@ -141,13 +141,21 @@
 </form>
 
 <section id="discrete">
-	<label for="discrete" class={label_styles}>Discrete input (outside form)</label>
+	<div class="prose lg:prose-xl mb-4">
+		<h2>Saving inputs outside of a form</h2>
+
+		<p>
+			This action also works for inputs that are not part of a form. Just make sure to give them a name
+		</p>
+	</div>
+
+	<label for="discrete" class={label_styles}>Standalone input (outside form)</label>
 	<input
 		use:persist={{
-			key: 'discrete'
+			key: 'standalone'
 		}}
 		type="text"
-		name="discrete"
+		name="standalone"
 		data-testid="discrete"
 		class={input_styles}
 	/>
