@@ -98,10 +98,21 @@ function save_input(event: Event, store: Writable<any>, config: {
     const value = get(store)
     if (input instanceof HTMLSelectElement) {
         store.set({ ...value, [input.name]: input.selectedIndex })
-    } else if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+    }
+    else if (input instanceof HTMLInputElement) {
         if (input.type === 'password' && config.ignorePassword) {
             return
+        } else if (input.type === 'checkbox') {
+            store.set({ ...value, [input.name]: input.checked ? input.value : null })
+        } else if (input.type === 'radio') {
+            if (input.checked) {
+                store.set({ ...value, [input.name]: input.value })
+            }
         }
+        else {
+            store.set({ ...value, [input.name]: input.value })
+        }
+    } else if (input instanceof HTMLTextAreaElement) {
         store.set({ ...value, [input.name]: input.value })
     }
 }
@@ -122,15 +133,17 @@ const load_cached_values = (element: HTMLElement, store: Writable<any>, config: 
 
 function load_data(element: Element, value: unknown, config: { ignorePassword: boolean; }) {
     if (element instanceof HTMLInputElement) {
-        if (element.type === 'radio') {
-            element.checked = element.value === value;
-        }
-        else if (element.type === 'checkbox') {
-            element.checked = value as boolean;
+        if (element.type === 'radio' || element.type === 'checkbox') {
+            if (element.value === value) {
+                element.checked = true;
+                element.dispatchEvent(new Event('change', { bubbles: true }));
+            }
         } else if (element.type === 'password' && !config.ignorePassword) {
             element.value = value as string;
+            element.dispatchEvent(new Event('input', { bubbles: true }));
         } else {
             element.value = value as string;
+            element.dispatchEvent(new Event('input', { bubbles: true }));
         }
     } else if (element instanceof HTMLTextAreaElement) {
         element.value = value as string;

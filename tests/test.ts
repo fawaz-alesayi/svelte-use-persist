@@ -12,7 +12,7 @@ test('the form in the root route "/" should be saved in localSorage and persiste
 		range: '50',
 		color: '#ff0000',
 		checkbox: 'on',
-		radio: 'on',
+		radio: 'option2',
 		password: 'password',
 	} as const;
 
@@ -30,7 +30,7 @@ test('the form in the root route "/" should be saved in localSorage and persiste
 	await page.getByTestId('range').fill(form.range);
 	await page.getByTestId('color').fill(form.color);
 	await page.getByTestId('checkbox').check();
-	await page.getByTestId('radio').check();
+	await page.getByTestId('radio-option2').check();
 	await page.getByTestId('password').fill(form.password);
 
 	const _localStorage: Record<string, any> = await page.evaluate(() => {
@@ -60,7 +60,7 @@ test('the form in the root route "/" should be saved in localSorage and persiste
 	await expect(await page.getByTestId('range').inputValue()).toStrictEqual(form.range);
 	await expect(await page.getByTestId('color').inputValue()).toStrictEqual(form.color);
 	await expect(await page.getByTestId('checkbox').isChecked()).toEqual(true);
-	await expect(await page.getByTestId('radio').isChecked()).toEqual(true);
+	await expect(await page.getByTestId('radio-option2').isChecked()).toEqual(true);
 	await expect(await page.getByTestId('password').inputValue()).toEqual("");
 
 

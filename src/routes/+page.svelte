@@ -1,8 +1,16 @@
-<script>
+<script lang="ts">
 	import { persist } from '$lib';
 
 	const input_styles = 'border-2 border-black';
 	const label_styles = 'font-black';
+
+	let title: string;
+	let checkbox: boolean;
+	let radio: string;
+
+	$: console.log(title);
+	$: console.log(checkbox);
+	$: console.log(radio);
 </script>
 
 <main class="prose lg:prose-xl mb-4">
@@ -26,7 +34,7 @@
 	}}
 >
 	<label for="title" class={label_styles}>Title</label>
-	<input type="text" name="title" data-testid="title" class={input_styles} />
+	<input type="text" name="title" data-testid="title" class={input_styles} bind:value={title} />
 
 	<label for="content" class={label_styles}>Content</label>
 	<textarea name="content" data-testid="content" class={input_styles} />
@@ -53,10 +61,38 @@
 	<input type="color" name="color" data-testid="color" class={input_styles} />
 
 	<label for="checkbox" class={label_styles}>Checkbox</label>
-	<input type="checkbox" name="checkbox" data-testid="checkbox" value="on" class={input_styles} />
+	<input
+		type="checkbox"
+		name="checkbox"
+		data-testid="checkbox"
+		value="on"
+		class={input_styles}
+		bind:checked={checkbox}
+	/>
 
-	<label for="radio" class={label_styles}>Radio</label>
-	<input type="radio" name="radio" data-testid="radio" value="on" class={input_styles} />
+	<p class={label_styles}>Radio</p>
+	<label class="flex flex-row items-center gap-1">
+		<input
+			type="radio"
+			name="radio"
+			data-testid="radio-option1"
+			value="option1"
+			class={input_styles}
+			bind:group={radio}
+		/>
+		Option One
+	</label>
+	<label class="flex flex-row items-center gap-1">
+		<input
+			type="radio"
+			name="radio"
+			data-testid="radio-option2"
+			value="option2"
+			class={input_styles}
+			bind:group={radio}
+		/>
+		Option Two
+	</label>
 
 	<label for="select" class={label_styles}>Select</label>
 	<select name="select" data-testid="select" class={input_styles}>
