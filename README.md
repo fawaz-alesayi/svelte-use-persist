@@ -12,7 +12,7 @@ A Svelte action that saves forms and inputs client side to local storage and res
 ## Installation
 
 ```bash
-npm install svelte-use-persist
+npm install svelte-local-storage-store svelte-use-persist
 ```
 
 ## Features
