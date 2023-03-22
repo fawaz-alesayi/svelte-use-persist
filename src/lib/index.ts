@@ -8,7 +8,7 @@ type BasePersistConfig = {
      * 
      * @default 'input'
      * */
-    persistOn?: 'input' | 'change',
+    persistOn?: 'input' | 'change' | 'blur'
 
     /**
      * Setting this to `false` will cause the password fields to be persisted. Highly discouraged.
@@ -147,7 +147,9 @@ function load_data(element: Element, value: unknown, config: { ignorePassword: b
         }
     } else if (element instanceof HTMLTextAreaElement) {
         element.value = value as string;
+        element.dispatchEvent(new Event('input', { bubbles: true }));
     } else if (element instanceof HTMLSelectElement) {
         element.selectedIndex = value as number;
+        element.dispatchEvent(new Event('change', { bubbles: true }));
     }
 }
