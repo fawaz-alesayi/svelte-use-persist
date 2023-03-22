@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test('the form in the root route "/" should be saved in localSorage and persisted on refresh', async ({
+test('the form in the root route "/" should be saved in localStorage and persisted on refresh', async ({
 	page
 }) => {
 	const form = {
@@ -35,7 +35,7 @@ test('the form in the root route "/" should be saved in localSorage and persiste
 	await page.getByTestId('radio-option2').check();
 	await page.getByTestId('password').fill(form.password);
 
-	const _localStorage: Record<string, any> = await page.evaluate(() => {
+	const _localStorage: Storage = await page.evaluate(() => {
 		return localStorage;
 	});
 
