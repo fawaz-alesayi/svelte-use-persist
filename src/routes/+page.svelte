@@ -145,7 +145,8 @@
 		<h2>Saving inputs outside of a form</h2>
 
 		<p>
-			This action also works for inputs that are not part of a form. Just make sure to give them a name
+			This action also works for inputs that are not part of a form. Just make sure to give them a
+			name
 		</p>
 	</div>
 
