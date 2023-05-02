@@ -79,6 +79,7 @@ Create an input and add the `use:persist` action to it. The action takes an obje
 
 <input
 	type="text"
+	name="my-input"
 	use:persist={{
 		key: 'my-input'
 	}}
@@ -99,6 +100,7 @@ You can use this action with your own stores. Just pass the store as the `store`
 
 <input
 	type="text"
+	name="my-input"
 	use:persist={{
 		store
 	}}
