@@ -109,9 +109,9 @@ You can use this action with your own stores. Just pass the store as the `store`
 
 ## FAQ
 
-- Why not just use SvelteKit's persist?
+- Why should I use this instead of [SvelteKit's Snapshots](https://kit.svelte.dev/docs/snapshots)?
 
-You should definitely be using SvelteKit. But if you're not using SvelteKit in the first place, this package is a good option.
+You should definitely be using the Snapshot feature in Sveltekit. But if you're not using SvelteKit in the first place, this package is a good option.
 
 - Why did you create this?
 
