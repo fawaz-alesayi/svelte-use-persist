@@ -1,6 +1,5 @@
 ![svelte-use-persist](https://user-images.githubusercontent.com/28185591/223736054-3dfdb061-5e14-4878-a7ff-3b9ab1f99a6c.png)
 
-
 # svelte-use-persist
 
 A Svelte action that saves forms and inputs client side to local storage and restores them on page load.
@@ -12,7 +11,7 @@ A Svelte action that saves forms and inputs client side to local storage and res
 ## Installation
 
 ```bash
-npm install svelte-local-storage-store svelte-use-persist
+npm install svelte-use-persist
 ```
 
 ## Features
@@ -107,15 +106,23 @@ You can use this action with your own stores. Just pass the store as the `store`
 />
 ```
 
-## Why did you create this?
 
-I run a compliance & legal startup where people have to fill out very long forms (70+ questions). I thought that It would be a really bad experience if one of our customers had to re-do the form. So svelte-use-persist was born!
+## FAQ
+
+- Why not just use SvelteKit's persist?
+
+You should definitely be using SvelteKit. But if you're not using SvelteKit in the first place, this package is a good option.
+
+- Why did you create this?
+
+I used to run an audit company where people had to fill out very long forms (70+ questions). I thought that It would be a really bad experience if one of our customers had to re-do the form. So svelte-use-persist was born!
+
 
 ## Acknowledgements
 
 This work would have not been possible without the following projects and people, so thank you!
 
-- [svelte-local-storage-store](https://github.com/joshnuss/svelte-local-storage-store) by @joshnuss (Joshua Nussbaum)
+- [svelte-persisted-store](https://github.com/joshnuss/svelte-local-storage-store) by @joshnuss (Joshua Nussbaum)
 - [Svelte](https://github.com/sveltejs/svelte) and the [Svelte contributors](https://github.com/sveltejs/svelte/graphs/contributors)
 
 # License

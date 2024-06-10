@@ -7,10 +7,6 @@
 	let title: string;
 	let checkbox: boolean;
 	let radio: string;
-
-	$: console.log(title);
-	$: console.log(checkbox);
-	$: console.log(radio);
 </script>
 
 <main class="prose lg:prose-xl mb-4">

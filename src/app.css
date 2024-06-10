@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-input[type='checkbox']{
-    border-radius: 0;
+input[type='checkbox'] {
+	border-radius: 0;
 }
