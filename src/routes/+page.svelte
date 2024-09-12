@@ -7,6 +7,7 @@
 	let title: string;
 	let checkbox: boolean;
 	let radio: string;
+	let selection: string[] = [];
 </script>
 
 <main class="prose lg:prose-xl mb-4">
@@ -65,6 +66,30 @@
 		class={input_styles}
 		bind:checked={checkbox}
 	/>
+
+	<label for="checkbox" class={label_styles}>Checkbox Group</label>
+	<label class="flex flex-row items-center gap-1">
+		<input
+			type="checkbox"
+			name="selection"
+			data-testid="selection-option1"
+			value="option1"
+			class={input_styles}
+			bind:group={selection}
+		/>
+		Option One
+	</label>
+	<label class="flex flex-row items-center gap-1">
+		<input
+			type="checkbox"
+			name="selection"
+			data-testid="selection-option2"
+			value="option2"
+			class={input_styles}
+			bind:group={selection}
+		/>
+		Option Two
+	</label>
 
 	<p class={label_styles}>Radio</p>
 	<label class="flex flex-row items-center gap-1">

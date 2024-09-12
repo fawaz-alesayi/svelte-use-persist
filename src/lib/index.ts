@@ -66,7 +66,7 @@ export function persist(element: HTMLElement, config: PersistConfig) {
 	}
 
 	function handler(event: Event) {
-		save_input(event, _store, {
+		save_input(event, element, _store, {
 			ignorePassword: _config.ignorePassword
 		});
 	}
@@ -96,6 +96,7 @@ export function persist(element: HTMLElement, config: PersistConfig) {
 
 function save_input(
 	event: Event,
+	element: HTMLElement,
 	store: Writable<any>,
 	config: {
 		ignorePassword: boolean;
@@ -109,9 +110,19 @@ function save_input(
 		if (input.type === 'password' && config.ignorePassword) {
 			return;
 		} else if (input.type === 'checkbox') {
-			store.set({ ...value, [input.name]: input.checked ? input.value : null });
+			const inputs: NodeListOf<HTMLInputElement> = element.querySelectorAll(`input[name="${input.name}"][type="checkbox"]`);
+			if (inputs.length > 1) {
+				const values = Array.from(inputs)
+					.filter((input) => input.checked)
+					.map((input) => input.value);
+				store.set({ ...value, [input.name]: values });
+			} else {
+				store.set({ ...value, [input.name]: input.checked ? input.value : null });
+			}
+
 		} else if (input.type === 'radio') {
 			if (input.checked) {
+				console.log(input.value);
 				store.set({ ...value, [input.name]: input.value });
 			}
 		} else {
