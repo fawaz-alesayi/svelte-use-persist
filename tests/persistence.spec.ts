@@ -14,6 +14,7 @@ test('the form in the root route "/" should be saved in localStorage and persist
 		range: '50',
 		color: '#ff0000',
 		checkbox: 'on',
+		selection: ['option1', 'option2'],
 		radio: 'option2',
 		password: 'password'
 	} as const;
@@ -32,6 +33,8 @@ test('the form in the root route "/" should be saved in localStorage and persist
 	await page.getByTestId('range').fill(form.range);
 	await page.getByTestId('color').fill(form.color);
 	await page.getByTestId('checkbox').check();
+	await page.getByTestId('selection-option1').check();
+	await page.getByTestId('selection-option2').check();
 	await page.getByTestId('radio-option2').check();
 	await page.getByTestId('password').fill(form.password);
 
@@ -62,6 +65,8 @@ test('the form in the root route "/" should be saved in localStorage and persist
 	expect(await page.getByTestId('range').inputValue()).toStrictEqual(form.range);
 	expect(await page.getByTestId('color').inputValue()).toStrictEqual(form.color);
 	expect(await page.getByTestId('checkbox').isChecked()).toEqual(true);
+	expect(await page.getByTestId('selection-option1').isChecked()).toEqual(true);
+	expect(await page.getByTestId('selection-option2').isChecked()).toEqual(true);
 	expect(await page.getByTestId('radio-option2').isChecked()).toEqual(true);
 	// Shouldn't save password to localStorage by default
 	expect(await page.getByTestId('password').inputValue()).toEqual('');

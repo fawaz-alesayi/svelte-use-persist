@@ -122,7 +122,6 @@ function save_input(
 
 		} else if (input.type === 'radio') {
 			if (input.checked) {
-				console.log(input.value);
 				store.set({ ...value, [input.name]: input.value });
 			}
 		} else {
@@ -132,7 +131,6 @@ function save_input(
 		store.set({ ...value, [input.name]: input.value });
 	}
 }
-
 const load_cached_values = (
 	element: HTMLElement,
 	store: Writable<any>,
@@ -140,24 +138,35 @@ const load_cached_values = (
 		ignorePassword: boolean;
 	}
 ) => {
-	for (const [key, value] of Object.entries(get(store))) {
+	const storeEntries = Object.entries(get(store));
+	for (let i = 0; i < storeEntries.length; i++) {
+		const [key, value] = storeEntries[i];
 		if (element.attributes.getNamedItem('name')?.value === key) {
 			load_data(element, value, config);
 		}
 		const inputs = element.querySelectorAll(`[name="${key}"]`);
-		for (const input of inputs) {
-			load_data(input, value, config);
+		for (let j = 0; j < inputs.length; j++) {
+			load_data(inputs[j], value, config);
 		}
 	}
 };
 
 function load_data(element: Element, value: unknown, config: { ignorePassword: boolean }) {
 	if (element instanceof HTMLInputElement) {
-		if (element.type === 'radio' || element.type === 'checkbox') {
+		if (element.type === 'radio') {
 			if (element.value === value) {
 				element.checked = true;
 				element.dispatchEvent(new Event('change', { bubbles: true }));
 			}
+		} else if (element.type === 'checkbox') {
+			if (Array.isArray(value)) {
+				// Grouped checkbox
+				element.checked = value.includes(element.value);
+			} else {
+				// Single checkbox
+				element.checked = element.value === value;
+			}
+			element.dispatchEvent(new Event('change', { bubbles: true }));
 		} else if (element.type === 'password' && !config.ignorePassword) {
 			element.value = value as string;
 			element.dispatchEvent(new Event('input', { bubbles: true }));
