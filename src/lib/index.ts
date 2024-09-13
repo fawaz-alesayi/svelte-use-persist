@@ -154,7 +154,7 @@ const load_cached_values = (
 function load_data(element: Element, value: unknown, config: { ignorePassword: boolean }) {
 	if (element instanceof HTMLInputElement) {
 		if (element.type === 'radio' || element.type === 'checkbox') {
-			if (element.value === value) {
+			if (element.value === value || (Array.isArray(value) && value.includes(element.value))) {
 				element.checked = true;
 				element.dispatchEvent(new Event('change', { bubbles: true }));
 			}
